@@ -3,12 +3,14 @@ import pytest
 from httpx import AsyncClient
 from app.main import app
 
+
 @pytest.mark.asyncio
 async def test_read_main():
     async with AsyncClient(app=app, base_url="http://test") as ac:
         response = await ac.get("/")
     assert response.status_code == 200
     assert response.json() == {"message": "Bem-vindo à API de Consulta sobre Animais"}
+
 
 @pytest.mark.asyncio
 async def test_get_animals():
@@ -19,6 +21,7 @@ async def test_get_animals():
     assert isinstance(animals, list)
     assert len(animals) == 10  # Verifica se há 10 animais na lista
 
+
 @pytest.mark.asyncio
 async def test_get_specific_animal():
     async with AsyncClient(app=app, base_url="http://test") as ac:
@@ -27,6 +30,7 @@ async def test_get_specific_animal():
     animal = response.json()
     assert animal["id"] == 1
     assert animal["name"] == "Leão"
+
 
 @pytest.mark.asyncio
 async def test_get_animal_not_found():

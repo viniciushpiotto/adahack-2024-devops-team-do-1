@@ -17,9 +17,11 @@ animals = [
     Animal(id=10, name="Tartaruga", eats="Vegetação marinha", plays="Natação lenta", lives="Oceanos")
 ]
 
+
 @router.get("/animals", response_model=list[Animal])
 async def get_animals():
     return animals
+
 
 @router.get("/animals/{animal_id}", response_model=Animal)
 async def get_animal(animal_id: int):
