@@ -33,7 +33,7 @@ jobs:
       - name: Test with pytest
         run: |
           pip install pytest pytest-cov
-          pytest backend/tests --cov-report xml:backend/tests/report/coverage.xml
+          pytest backend/tests --cov --cov-report xml:backend/tests/report/coverage.xml
           ls backend/tests
           ls backend/tests/report
 
