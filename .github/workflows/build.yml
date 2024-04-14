@@ -34,6 +34,7 @@ jobs:
         run: |
           pip install pytest pytest-cov
           pytest backend/tests --cov-report xml:backend/tests/report/coverage.xml
+          pwd
 
       - name: Coverage Report
         uses: orgoro/coverage@v3.1
