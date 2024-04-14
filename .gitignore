@@ -19,3 +19,5 @@ dist/
 # Outros arquivos e pastas que podem conter informações sensíveis ou desnecessárias
 *.log
 .env
+
+/venv
