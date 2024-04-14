@@ -1,12 +1,12 @@
 # Nome dos integrantes
-Alan de Oliveira Gonçalves
-Andrei Ferreira Lançanova
-Carlos Alexander Alves de Souza
-Girley Alves de Lima
-Vinícius Piotto
-Walace Edgar Brabo
-Walter Netto
-Welington Júlio Dias Rodrigues
+- Alan de Oliveira Gonçalves
+- Andrei Ferreira Lançanova
+- Carlos Alexander Alves de Souza
+- Edgar Brabo
+- Girley Alves de Lima
+- Vinícius Piotto
+- Walter Netto
+- Welington Júlio Dias Rodrigues
 
 # Nome do Projeto
 Zoo da diversidade e inclusão
