@@ -32,7 +32,7 @@ jobs:
       - name: Test with pytest
         run: |
           pip install pytest pytest-cov
-          pytest /backend/tests \
+          pytest backend/tests \
           --doctest-modules \
           --junitxml=junit/test-results.xml \
           --cov=com \
