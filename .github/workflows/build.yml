@@ -31,6 +31,9 @@ jobs:
           pip install -r ./backend/requirements.txt
 
       - name: Test with pytest
+        uses: romeovs/lcov-reporter-action@v0.2.16
+        with:
+          lcov-file: ./coverage/lcov.info
         run: |
           pip install pytest pytest-cov
           pytest backend/tests \
