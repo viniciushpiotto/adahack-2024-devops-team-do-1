@@ -4,5 +4,4 @@ pydantic
 pytest
 httpx
 pytest-asyncio
-black 
 flake8
