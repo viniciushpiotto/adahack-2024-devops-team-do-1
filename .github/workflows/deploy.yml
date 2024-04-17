@@ -1,0 +1,46 @@
+name: Deploy to AWS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Login to AWS ECR
+      run: |
+        aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCESS_KEY_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+
+    - name: Build Docker image
+      run: |
+        docker build -t my_image .
+
+    - name: Tag Docker image
+      run: |
+        docker tag my_image ${{ secrets.AWS_ACCESS_KEY_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/production:v${{ github.run_number }}
+
+    - name: Push Docker image to ECR
+      run: |
+        docker push ${{ secrets.AWS_ACCESS_KEY_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/production:v${{ github.run_number }}
+
+    - name: Update Dockerrun.aws.json
+      run: |
+        sed -i "s/production:v[0-9]*/production:v${{ github.run_number }}/g" Dockerrun.aws.json
+
+    - name: Generate new zip
+      run: |
+        zip -r environment-for-production.zip Dockerrun.aws.json
+
+    - name: Apply Terraform
+      run: |
+        terraform apply
+
+    - name: Update Elastic Beanstalk environment
+      run: |
+        aws elasticbeanstalk update-environment --environment-name environment-for-production --version-label environment-for-production
