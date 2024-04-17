@@ -1,17 +1,8 @@
-# Nome dos integrantes
-- Alan de Oliveira Gonçalves
-- Andrei Ferreira Lançanova
-- Carlos Alexander Alves de Souza
-- Edgar Brabo
-- Girley Alves de Lima
-- Vinícius Piotto
-- Walter Netto
-- Welington Júlio Dias Rodrigues
+![Gif AdaTech](/img/ada.gif)
 
-# Nome do Projeto
-Zoo da diversidade e inclusão
+# Hackathon AdaTech - Vem ser Tech (trilha DevOps)
 
-# Proposta 
+## Case: Aplicação de Zoológico com Inclusão visual
 
 1. Introdução
 
