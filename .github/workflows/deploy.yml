@@ -41,7 +41,7 @@ jobs:
     - name: Apply Terraform
       run: |
         cd env/production
-        terraform apply
+        terraform apply -auto-approve
 
     - name: Update Elastic Beanstalk environment
       run: |
