@@ -4,6 +4,7 @@
 
 resource "aws_s3_bucket" "beanstalk_bucket" {
   bucket = "beanstalk-bucket-${var.name}"
+  region = var.region
 }
 
 resource "aws_s3_object" "docker" {
