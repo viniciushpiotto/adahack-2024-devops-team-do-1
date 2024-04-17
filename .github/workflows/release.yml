@@ -34,6 +34,3 @@ jobs:
           push: true
           tags: |
             ${{format('{0}:{1}', secrets.AWS_ECR_IMAGE, github.sha)}}
-      - name: Saves image id for next jobs
-        run: |
-          export DEVELOP_LAST_HASH=${{ github.sha }}
