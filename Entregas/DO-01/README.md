@@ -63,7 +63,7 @@ Para criar uma inclusão dentro do código, pensamos em definir documentações 
 
 ### Pipeline - DevOps
 
-![Pipeline](Entregas/DO-01/img/pipeline.png "A imagem apresenta o fluxo de CI/CD que foi pensado para este projeto, onde uma nova feature passa pelo processo de source, onde o linting é analisado, habilitando o merge do Pull Request, passando depois para a etapa de Build que instala as dependências, executa os testes automatizados e valida a cobertura de testes mínima de 80%, indo então para a etapa de release, que faz a criação da imagem Docker da aplicação e envia esta imagem para o repositório do Amazon ECR. Esta imagem é então deployada no ambiente através do uso do Elastic Beanstalk, que mobiliza os recursos necessários para fazer o deploy.")
+![Pipeline](img/pipeline.png "A imagem apresenta o fluxo de CI/CD que foi pensado para este projeto, onde uma nova feature passa pelo processo de source, onde o linting é analisado, habilitando o merge do Pull Request, passando depois para a etapa de Build que instala as dependências, executa os testes automatizados e valida a cobertura de testes mínima de 80%, indo então para a etapa de release, que faz a criação da imagem Docker da aplicação e envia esta imagem para o repositório do Amazon ECR. Esta imagem é então deployada no ambiente através do uso do Elastic Beanstalk, que mobiliza os recursos necessários para fazer o deploy.")
 
 ## Continuous Integration:
 
