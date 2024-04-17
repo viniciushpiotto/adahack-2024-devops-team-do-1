@@ -4,7 +4,10 @@ on:
   push:
     branches:
       - develop
-
+permissions:
+  id-token: write
+  contents: read
+  pull-requests: write
 jobs:
   deploy:
     runs-on: ubuntu-latest
