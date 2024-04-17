@@ -3,7 +3,7 @@
 */
 module "Production" {
   source = "../../infra"
-  region = "us-east-1"
+  region = "us-west-2"
   name = "production"
   description = "application-for-production"
   enviroment_beanstalk_name = "enviroment-for-production"
