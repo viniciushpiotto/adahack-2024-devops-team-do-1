@@ -1,4 +1,4 @@
-![Gif AdaTech](img/ada.gif)
+![Gif AdaTech](Entregas/DO-01/img/ada.gif)
 
 # Hackathon AdaTech - Vem ser Tech (trilha DevOps)
 
@@ -63,7 +63,7 @@ Para criar uma inclusão dentro do código, pensamos em definir documentações 
 
 ### Pipeline - DevOps
 
-![Pipeline](img/pipeline.png "A imagem apresenta o fluxo de CI/CD que foi pensado para este projeto, onde uma nova feature passa pelo processo de source, onde o linting é analisado, habilitando o merge do Pull Request, passando depois para a etapa de Build que instala as dependências, executa os testes automatizados e valida a cobertura de testes mínima de 80%, indo então para a etapa de release, que faz a criação da imagem Docker da aplicação e envia esta imagem para o repositório do Amazon ECR. Esta imagem é então deployada no ambiente através do uso do Elastic Beanstalk, que mobiliza os recursos necessários para fazer o deploy.")
+![Pipeline](Entregas/DO-01/img/pipeline.png "A imagem apresenta o fluxo de CI/CD que foi pensado para este projeto, onde uma nova feature passa pelo processo de source, onde o linting é analisado, habilitando o merge do Pull Request, passando depois para a etapa de Build que instala as dependências, executa os testes automatizados e valida a cobertura de testes mínima de 80%, indo então para a etapa de release, que faz a criação da imagem Docker da aplicação e envia esta imagem para o repositório do Amazon ECR. Esta imagem é então deployada no ambiente através do uso do Elastic Beanstalk, que mobiliza os recursos necessários para fazer o deploy.")
 
 ## Continuous Integration:
 
@@ -92,9 +92,9 @@ A etapa de Source inicia quando um Pull Request é aberto, onde é executada uma
 
 Para isso, considerando que a aplicação em questão é uma app Python, foi utilizado um linter largamente utilizado para esta linguagem que é o [Flake8](https://aws.amazon.com/pt/devops/continuous-integration/#:~:text=A%20integra%C3%A7%C3%A3o%20cont%C3%ADnua%20%C3%A9%20uma,cria%C3%A7%C3%B5es%20e%20testes%20s%C3%A3o%20executados.). A seguir são mostrados dois exemplos, sendo o primeiro de um caso de PR que passou na validação de linting, e o segundo, um caso onde existiam problemas de código.
 
-![Erro de Linting](img/source-linting-error.png "A imagem mostra um erro de linting que exibe a seguinte mensagem: 'Expected 2 blank lines, found 1 (E302)'")
+![Erro de Linting](Entregas/DO-01/img/source-linting-error.png "A imagem mostra um erro de linting que exibe a seguinte mensagem: 'Expected 2 blank lines, found 1 (E302)'")
 
-![Linting Ok](img/source-linting-ok.png "A imagem mostra uma tela com um símbolo de validação verde ao lado da mensagem de commit 'FIX: Docker Image Tag point to commit hash', assim como a execução OK do Linting que mostra a mensagem 'No issues Flake8 found no issues'")
+![Linting Ok](Entregas/DO-01/img/source-linting-ok.png "A imagem mostra uma tela com um símbolo de validação verde ao lado da mensagem de commit 'FIX: Docker Image Tag point to commit hash', assim como a execução OK do Linting que mostra a mensagem 'No issues Flake8 found no issues'")
 
 Estando esta validação ok, é habilitado o recurso de Merge para o Pull Request. A ação de Merge do Pull Request dá início ao processo de Build.
 
@@ -105,7 +105,7 @@ A etapa de build deste projeto consiste no download dos artefatos que são depen
 #### Run Unit Tests
 Após, são executados os testes unitários da aplicação, que intencionam um Code Coverage Report de 80%. Quando a execução dos testes é concluída, o usuário que abriu o Pull Request é notificado
 
-![Coverage Report](img/build-coverage-report.png "Ação automatizada do GitHub Actions faz comentário no Pull Request informando a quantidade de linhas de código, a quantidade de linhas cobertas por testes, a porcentagem de cobertura de testes, e a porcentagem faltante para o objetivo de 80%")
+![Coverage Report](Entregas/DO-01/img/build-coverage-report.png "Ação automatizada do GitHub Actions faz comentário no Pull Request informando a quantidade de linhas de código, a quantidade de linhas cobertas por testes, a porcentagem de cobertura de testes, e a porcentagem faltante para o objetivo de 80%")
 
 Uma vez estando ok o fluxo de build, isso sensibiliza o processo de release.
 
@@ -119,7 +119,7 @@ Uma vez conferidas as permissões, é utilizada a GitHub Action [Configure AWS C
 
 Neste projeto, por questão de facilidade de versionamento, foi utilizado como tag de versionamento de releases o commit hash do Merge do último Pull Request realizado. A figura a seguir ilustra a pipeline executando de forma bem-sucedida o envio da nova imagem para o ECR:
 
-![Release bem-sucedida](img/release-ok.png "A figura mostra a tela do GitHub Actions, mostrando todas as etapas de Release: Set up job, Git checkout, Configure aws credentials, Login to Amazon ECR, Build and Push, Post Build and push, Post Login to Amazon ECR, Post Configure aws credentials, Post Git checkout e Complete job")
+![Release bem-sucedida](Entregas/DO-01/img/release-ok.png "A figura mostra a tela do GitHub Actions, mostrando todas as etapas de Release: Set up job, Git checkout, Configure aws credentials, Login to Amazon ECR, Build and Push, Post Build and push, Post Login to Amazon ECR, Post Configure aws credentials, Post Git checkout e Complete job")
 
 ## Continuous Delivery:
 
