@@ -12,6 +12,12 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+    - name: Configure aws credentials
+      uses: aws-actions/configure-aws-credentials@v1.7.0
+      with:
+        role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+        role-session-name: ${{ secrets.ROLE_SESSION_NAME }}
+        aws-region: ${{ secrets.AWS_REGION }}
 
     - name: Update Dockerrun.aws.json
       run: |
@@ -23,7 +29,6 @@ jobs:
 
     - name: terraform init
       run: |
-        pwd
         cd env/production
         terraform init \
         -backend-config="bucket=${{ secrets.AWS_S3_BUCKET_NAME }}" \
