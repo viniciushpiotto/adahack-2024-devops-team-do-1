@@ -20,7 +20,7 @@ jobs:
       with:
         role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
         role-session-name: ${{ secrets.ROLE_SESSION_NAME }}
-        aws-region: ${{ secrets.AWS_REGION }}
+        aws-region: "us-west-2"
 
     - name: Update Dockerrun.aws.json
       run: |
@@ -36,7 +36,7 @@ jobs:
         terraform init \
         -backend-config="bucket=${{ secrets.AWS_S3_BUCKET_NAME }}" \
         -backend-config="key=${{ secrets.AWS_S3_BUCKET_KEY_NAME }}" \
-        -backend-config="region=${{ secrets.AWS_REGION }}"
+        -backend-config="region=us-west-2"
 
     - name: Apply Terraform
       run: |
