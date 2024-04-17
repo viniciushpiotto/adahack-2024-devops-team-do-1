@@ -28,7 +28,7 @@ jobs:
 
     - name: Generate new zip
       run: |
-        zip -r environment-for-production.zip Dockerrun.aws.json
+        zip -r production.zip Dockerrun.aws.json
 
     - name: terraform init
       run: |
