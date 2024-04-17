@@ -45,4 +45,4 @@ jobs:
 
     - name: Update Elastic Beanstalk environment
       run: |
-        aws elasticbeanstalk update-environment --environment-name adahack-2024-devops-team-do-1-prod --version-label adahack-2024-devops-team-do-1-prod
+        aws elasticbeanstalk update-environment --environment-name enviroment-for-production --version-label enviroment-for-production
