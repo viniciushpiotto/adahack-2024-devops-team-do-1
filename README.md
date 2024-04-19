@@ -36,18 +36,6 @@ Para criar uma inclusão dentro do código, pensamos em definir documentações 
         <p>Vinícius  <br/>Piotto</p>
       </a>
     </td>
-        <td>
-      <a href="https://github.com/Walttinho">
-        <img src="https://avatars.githubusercontent.com/u/40149590?v=4" width=100 />
-        <p>Walter  <br/>Netto</p>
-      </a>
-    </td>
-    <td>
-      <a href="https://github.com/W3l1n6t0n">
-        <img src="https://avatars.githubusercontent.com/u/87627283?v=4" width=100 />
-        <p>Welington  <br/>Júlio</p>
-      </a>
-    </td>
   </tr>
 </table>
 </div>
