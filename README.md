@@ -77,7 +77,6 @@ Os principais objetivos da integração contínua são encontrar e investigar er
 
 ![Fluxo de CI/CD](https://servicewordpressigti.azurewebsites.net/wp-content/uploads/2022/11/CI-CD-devops-como-funciona.png "A imagem mostra o símbolo de infinito do CI/CD, onde o processo de CI começa com a etapa de planejamento, passando pela etapa de código, seguindo para a etapa de compilação e execução de testes automatizados, sendo encerrado na etapa de Release, onde os artefatos de aplicação são enviados para a parte de deploy, que é escopo da parte de CD.")
 
-
 ## Proposta de Pipeline de Integração Contínua (CI) do IntegraZoo
 
 A ideia da equipe do IntegraZoo consistiu em utilizar uma pipeline CI baseada nas seguintes etapas:
@@ -123,24 +122,34 @@ Neste projeto, por questão de facilidade de versionamento, foi utilizado como t
 
 ## Continuous Delivery:
 
-Na busca pela otimização da abordagem adequada ao projeto, optamos por implementar o **Elastic Beanstalk**, levando em consideração a simplicidade da estrutura da aplicação, desprovida de um banco de dados ou outras camadas que demandem configurações específicas. A escolha se fundamentou na **facilidade de uso**, na **gestão automática de carga** e no **monitoramento de recursos oferecidos pelo serviço**. Todavia, é importante ressaltar algumas desvantagens inerentes a essa implementação, tais como a **limitação no controle total da infraestrutura** e a necessidade de garantir a reprodutibilidade e consistência ao criar ambientes semelhantes, como os de desenvolvimento e produção.
+### O que é Entrega Contínua (CD)?
 
-Para armazenar as imagens dos contêineres, estabelecemos a criação de um repositório no **Elastic Container Registry (ECR)**, visando a velocidade no momento da atualização por estar no mesmo serviço da aplicação.Entretanto, outra abordagem bastante recorrente seria utilizar o serviço do Docker Hub para armazenar as nossas imagens por meio de um repositório privado.
+Continuous Delivery (Entrega Contínua) é uma prática de desenvolvimento de software que busca automatizar e simplificar o processo de liberação de código para produção de forma frequente e confiável. O objetivo principal é permitir que as equipes de desenvolvimento possam entregar alterações de código de maneira eficiente e segura, com a menor intervenção manual possível.
 
-Além disso, utilizamos o **Simple Storage Service (S3)** para guardar o arquivo de configuração **Dockerrun**, compactado em formato zip. Esse arquivo contém o nome do repositório no ECR, juntamente com sua última versão atualizada, permitindo assim a **atualização automática da aplicação** no Elastic Beanstalk sempre que houver uma nova versão na branch de produção.
+Essa abordagem se baseia em uma série de princípios e práticas, incluindo integração contínua, automação de testes, implantação automatizada e monitoramento constante. Com a Continuous Delivery, as equipes podem liberar novas funcionalidades, correções de bugs e melhorias de desempenho em um ritmo constante e previsível, garantindo assim uma resposta rápida às necessidades dos usuários e do mercado.
 
-Por fim, empregamos um arquivo **deploy.yml** que automatiza todas as ações requeridas após o recebimento de um novo push no repositório de infraestrutura. Isso inclui a atualização do arquivo Dockerrun.aws.json, a inicialização do Terraform, a passagem de **variáveis sensíveis** por meio dos GitHub Actions Secrets, a aplicação de todas as atualizações via terraform apply e a finalização das configurações do ambiente do Elastic Beanstalk.
+### Elastic Beanstalk
 
-Apesar da estrutura já estabelecida, há aspectos que viso aprimorar progressivamente:
+Na busca pela otimização da abordagem adequada ao projeto, optamos por implementar o Elastic Beanstalk, levando em consideração a simplicidade da estrutura da aplicação, desprovida de um banco de dados ou outras camadas que demandem configurações específicas. A escolha se fundamentou na facilidade de uso, na gestão automática de carga e no monitoramento de recursos oferecidos pelo serviço. Todavia, é importante ressaltar algumas desvantagens inerentes a essa implementação, tais como a limitação no controle total da infraestrutura e a necessidade de garantir a reprodutibilidade e consistência ao criar ambientes semelhantes, como os de desenvolvimento e produção.
 
--  Um desses pontos é a adoção do **Kubernetes** para orquestração de contêineres, visando uma **escalabilidade** e *resiliência superiores*, pois a robustez do monitoramento fornecido pelo Kubernetes é crucial nesse contexto. 
+O Elastic Beanstalk é um serviço da AWS que facilita a implantação e o gerenciamento de aplicativos e serviços da web. Ele oferece escalabilidade automática, balanceamento de carga e monitoramento integrado, simplificando o processo de hospedagem de aplicativos na nuvem.
 
-- Além disso, pretendo fortalecer as práticas de **segurança**, explorando maneiras de ocultar informações sensíveis que possam representar obstáculos futuros para a aplicação.
+### Elastic Container Registry (ECR):
 
-- Por fim, a integração de **ferramentas de monitoramento** de logging surge como uma boa escolha para a estratégica de identificar e resolver problemas de forma ágil e concisa.
+Para armazenar as imagens dos contêineres, estabelecemos a criação de um repositório no Elastic Container Registry (ECR), visando a velocidade no momento da atualização por estar no mesmo serviço da aplicação. Entretanto, outra abordagem bastante recorrente seria utilizar o serviço do Docker Hub para armazenar as nossas imagens por meio de um repositório privado.
+
+### Simple Storage Service (S3):
+
+Além disso, utilizamos o Simple Storage Service (S3) para guardar o arquivo de configuração Dockerrun, compactado em formato zip. Esse arquivo contém o nome do repositório no ECR, juntamente com sua última versão atualizada, permitindo assim a atualização automática da aplicação no Elastic Beanstalk sempre que houver uma nova versão na branch de produção.
+
+### Automatização com deploy.yml:
+
+Por fim, empregamos um arquivo deploy.yml que automatiza todas as ações requeridas após o recebimento de um novo push no repositório de infraestrutura. Isso inclui a atualização do arquivo Dockerrun.aws.json, a inicialização do Terraform, a passagem de variáveis sensíveis por meio dos GitHub Actions Secrets, a aplicação de todas as atualizações via terraform apply e a finalização das configurações do ambiente do Elastic Beanstalk.
+
+### Aprimoramentos Futuros:
+
+Apesar da estrutura já estabelecida, há aspectos que viso aprimorar progressivamente, como a adoção do Kubernetes para orquestração de contêineres, visando uma escalabilidade e resiliência superiores. Além disso, pretendo fortalecer as práticas de segurança e integrar ferramentas de monitoramento de logging para identificar e resolver problemas de forma ágil e concisa.
 
 ### Aplicação Final:
 
 ![Release bem-sucedida](img/final-project.png "A imagem apresenta uma tela preta com a consulta da API em python funcionando por meio do provisionamento da cloud AWS.")
-
-Se você desejar acessar a aplicação: http://enviroment-for-production.eba-2wrm9qxj.us-west-2.elasticbeanstalk.com/
